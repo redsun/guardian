@@ -1,0 +1,10 @@
+.git
+.DS_Store
+node_modules
+dist
+dist-server
+.env*
+artifacts
+playwright-report
+test-results
+.openai

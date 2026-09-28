@@ -1,0 +1,47 @@
+name: Verify deployed demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Deployed HTTPS origin, for example https://your-service.onrender.com
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DEMO_BASE_URL: ${{ inputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Validate the deployed origin
+        run: |
+          node --input-type=module <<'NODE'
+          const url = new URL(process.env.DEMO_BASE_URL);
+          if (url.protocol !== 'https:' || url.username || url.password || url.search || url.hash || url.pathname !== '/') {
+            throw new Error('Provide an HTTPS origin without credentials, path, query, or fragment.');
+          }
+          console.log(`Checking ${url.origin}`);
+          NODE
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - name: Retain deployed browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-demo-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

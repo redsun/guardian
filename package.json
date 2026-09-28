@@ -1,0 +1,32 @@
+{
+  "name": "guardian-blend-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --import tsx server/index.ts",
+    "build": "tsc --noEmit && vite build && vite build --ssr server/index.ts --outDir dist-server",
+    "start": "NODE_ENV=production node dist-server/index.js",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "verify:live": "node --import tsx scripts/verify-live.ts",
+    "check:language": "node scripts/check-language.mjs",
+    "check": "npm run check:language && npm test && npm run build"
+  },
+  "dependencies": {
+    "@blend-capital/blend-sdk": "3.3.1",
+    "@stellar/stellar-sdk": "17.1.0",
+    "express": "5.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/express": "5.0.6",
+    "@types/node": "26.6.3",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.1"
+  }
+}

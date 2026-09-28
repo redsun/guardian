@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-09-27T12:53:23.828Z",
+  "sourceCommit": "c2ac23273a086f757c518a973e5edafa537cdd4c",
+  "snapshotFile": "testnet-snapshot.json",
+  "snapshotSha256": "e1471696855344a1f07bc6d85b19022983f881a506fcd857ecfb4b5ec386a5ff",
+  "network": "Testnet",
+  "poolId": "CCEBVDYM32YNYCVNRXQKDFFPISJJCV557CDZEIRBEE4NCV4KHPQ44HGF",
+  "address": "GD6YPQJCU5IXW3YCO7RGVBAWAHO7OIGCI7CJOGW6FP2CKNV3D74LER7J",
+  "wasmHash": "a41fc53d6753b6c04eb15b021c55052366a4c8e0e21bc72700f461264ec1350e",
+  "oracleId": "CAZOKR2Y5E2OSWSIBRVZMJ47RUTQPIGVWSAQ2UISGAVC46XKPGDG5PKI",
+  "ledgerStart": 4898003,
+  "ledgerEnd": 4898003,
+  "fetchedAt": 1790513603,
+  "effectiveCollateral": "381.3515570",
+  "effectiveLiabilities": "10.5276298",
+  "healthFactor": "36.2238760",
+  "status": "Above boundary",
+  "freshnessIssues": [],
+  "warnings": [
+    "Testnet mock oracle prices are not market prices.",
+    "Separate RPC reads span multiple ledgers; this is an estimate, not an atomic execution quote."
+  ],
+  "note": "Read-only testnet snapshot. Mock oracle prices. Separate reads span multiple ledgers. This is evidence at the recorded time, not a current execution quote."
+}
